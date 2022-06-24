@@ -19,6 +19,7 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <?php
@@ -34,29 +35,26 @@
             $zip = "ZIP Code";
         ?>
         <div class="container">
-            <div class="flex justify-center pt-8">
-                <div class="text-center bg-white dark:bg-gray-800 sm:rounded-lg">
-                    <div class="card pr-8">
+            <div class="flex justify-center">
+                <div class="text-center text-cyan-700 dark:bg-gray-800 sm:rounded-lg">
+                    <div class="p-6">
+                    <div class="card font-bold">
                         <div class="card-header">
-                            <h2>Profile Management</h2>
+                            <h2 class="text-3xl">Profile Management</h2>
                         </div>
                         <div class="card-body">
                             <form action="profileManagement.php" method="POST">
-                                <div class="form-group">
-                                    <label for="fullName">Full Name: </label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="50"  name="fullName" placeholder="Full Name...">
-                                    <br>
-                                    <label for="address1">Address 1: </label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address1" placeholder="Address 1...">
-                                    <br>
-                                    <label for="address2">Address 2: </label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address2" placeholder="Address 2...">
-                                    <br>
-                                    <label for="city">City: </label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="city" placeholder="City...">
-                                    <br>
-                                    <label for="state">State: </label>
-                                    <select name="state">
+                                <div class="grid justify-items-stretch">
+                                    <label for="fullName" class="pt-2">Full Name</label>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="50"  name="fullName" class="text-center" placeholder="..." require>
+                                    <label for="address1" class="pt-2">Address 1</label>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address1" class="text-center" placeholder="..." require>
+                                    <label for="address2" class="pt-2">Address 2</label>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address2" class="text-center" placeholder="...">
+                                    <label for="city" class="pt-2">City</label>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="city" class="text-center" placeholder="...">
+                                    <label for="state" class="pt-2">State</label>
+                                    <select name="state" class="text-center">
                                         <option value="AL">Alabama</option>
                                         <option value="AK">Alaska</option>
                                         <option value="AZ">Arizona</option>
@@ -113,16 +111,16 @@
                                         <option value="WI">Wisconsin</option>
                                         <option value="WY">Wyoming</option>
                                     </select>
-                                    <br>
-                                    <label for="zip">ZIP Code: </label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="9" minLength="5" name="zip" placeholder="ZIP Code...">
-                                    <br>
-                                    <div class="">
-                                        <button type="submit" name="submit">Submit</button>
+                                    <label for="zip" class="pt-2">ZIP Code</label>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="9" minLength="5" name="zip" class="text-center" placeholder="...">
+                                    <div class="grid justify-items-stretch pt-6">
+                                        <!-- <button type="submit" name="submit">Submit</button> -->
+                                        <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">Submit</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
