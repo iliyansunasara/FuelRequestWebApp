@@ -46,13 +46,13 @@
                             <form action="profileManagement.php" method="POST">
                                 <div class="grid justify-items-stretch">
                                     <label for="fullName" class="pt-2">Full Name</label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="50"  name="fullName" class="text-center" placeholder="..." require>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="50"  name="fullName" class="text-center" placeholder="..." required>
                                     <label for="address1" class="pt-2">Address 1</label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address1" class="text-center" placeholder="..." require>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address1" class="text-center" placeholder="..." required>
                                     <label for="address2" class="pt-2">Address 2</label>
                                     <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address2" class="text-center" placeholder="...">
                                     <label for="city" class="pt-2">City</label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="city" class="text-center" placeholder="...">
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="city" class="text-center" placeholder="..." required>
                                     <label for="state" class="pt-2">State</label>
                                     <select name="state" class="text-center">
                                         <option value="AL">Alabama</option>
@@ -112,7 +112,7 @@
                                         <option value="WY">Wyoming</option>
                                     </select>
                                     <label for="zip" class="pt-2">ZIP Code</label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="9" minLength="5" name="zip" class="text-center" placeholder="...">
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" pattern=".{5,9}" maxlength="9" minLength="5" name="zip" class="text-center" placeholder="5 to 9 characters" required>
                                     <div class="grid justify-items-stretch pt-6">
                                         <!-- <button type="submit" name="submit">Submit</button> -->
                                         <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">Submit</button>

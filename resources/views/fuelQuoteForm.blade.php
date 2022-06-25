@@ -47,7 +47,7 @@
                             <form action="profileManagement.php" method="POST">
                                 <div class="grid justify-items-stretch">
                                     <label for="gallonsRequested" class="pt-2">Gallons Requested</label>
-                                    <input type="number" id="gallonsRequested" name="gallonsRequested" class="text-center" placeholder="...">
+                                    <input type="number" id="gallonsRequested" name="gallonsRequested" class="text-center" placeholder="..." required>
                                     <label for="address1" class="pt-2">Address 1</label>
                                     <input type="text" readonly id="address1" name="address1" class="text-center" value="<?php echo $address1;?>">
                                     @if ($address2 != "")
