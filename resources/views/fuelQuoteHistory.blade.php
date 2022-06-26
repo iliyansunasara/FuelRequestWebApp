@@ -21,7 +21,7 @@
         </style>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body class="relative flex justify-center min-h-screen bg-gray-100 dark:bg-gray-900 py-4 sm:pt-0">
+    <body class="relative flex justify-center min-h-screen h-14 bg-gradient-to-r from-violet-500 to-fuchsia-500 py-4 sm:pt-0">
     <div class = "flex flex-col mb-4">
         <div class="text-center text-cyan-700 dark:bg-gray-800 sm:rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">

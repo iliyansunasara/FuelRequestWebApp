@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-    //return view('fuelQuoteHistory');
+    return view('fuelQuoteHistory');
     //return view('profileManagement');
     // return view('fuelQuoteForm');
-    return view('welcome');
+    //return view('welcome');
 });
