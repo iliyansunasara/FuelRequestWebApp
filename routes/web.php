@@ -14,7 +14,31 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     //return view('fuelQuoteHistory');
-    //return view('profileManagement');
+    // return view('profileManagement');
     // return view('fuelQuoteForm');
     return view('welcome');
 });
+
+Route::get('/profileManagement', function () {
+    return view('profileManagement');
+});
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/register', function () {
+    return view('register');
+});
+Route::get('/fuelQuoteForm', function () {
+    return view('fuelQuoteForm');
+});
+Route::get('/fuelQuoteHistory', function () {
+    return view('fuelQuoteHistory');
+});
+
+Route::post('/profileManagementSubmit', function () {
+    return view('profileManagement');
+});
+
+
+
+

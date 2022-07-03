@@ -43,7 +43,8 @@
                             <h2 class="text-3xl">Profile Management</h2>
                         </div>
                         <div class="card-body">
-                            <form action="profileManagement.php" method="POST">
+                            <form action="/profileManagementSubmit" method="POST">
+                                @csrf
                                 <div class="grid justify-items-stretch">
                                     <label for="fullName" class="pt-2">Full Name</label>
                                     <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="50"  name="fullName" class="text-center" placeholder="..." required>

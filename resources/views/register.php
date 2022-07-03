@@ -2,7 +2,7 @@
 <html>
     <head>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="css/login.css">
     </head>
 
     <body>

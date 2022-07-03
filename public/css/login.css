@@ -1,0 +1,90 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    background-image: url("background.jpg");
+    background-size: 100% 100%;
+    background-color: rgba(12, 18, 74, 0.993);
+}
+
+.login-div {
+    margin: 100px auto;
+    width: 350px;
+    background-color: #fff;
+    padding: 60px;
+}
+
+.logo {
+    background-color: rgba(35, 30, 30, 0.12);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin:0 auto;
+    margin-bottom: 10px;
+}
+
+.logo img{
+    width:100%;
+}
+
+.title, .sub-title {
+    text-align: center;
+    color: #505050;
+}
+
+.title {
+    font-weight: bolder;
+    font-size: 35px;
+}
+
+.form {
+    width: 100%;
+    margin-top:30px;
+}
+
+.form input {
+    font-size: 18px;
+    padding: 10px 20px 10px 5px;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.username, .password, .confirm-password {
+    display: block;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.form svg {
+    height: 25px;
+    margin-bottom: -5px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 0px;
+    margin-bottom: 30px;
+}
+
+button {
+    width: 100%;
+    padding: 12px 10px;
+    border: none;
+    font-size: 18px;
+    border-radius: 30px;
+    background-color: rgba(22, 22, 184, 0.918);
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.sign-up {
+    text-align: center;
+}
