@@ -36,7 +36,23 @@ Route::get('/fuelQuoteHistory', function () {
 });
 
 Route::post('/profileManagementSubmit', function () {
-    return view('profileManagement');
+    //get the data from the form
+    $fullName = $_POST["fullName"];
+    $address1 = $_POST["address1"];
+    $address2 = $_POST["address2"];
+    $city = $_POST["city"];
+    $state = $_POST["state"];
+    $zip = $_POST["zip"];
+});
+
+Route::post('/fuelQuoteFormSubmit', function () {
+    //get the data from the form
+    $gallonsRequested = $_POST["gallonsRequested"];
+    $address1 = $_POST["address1"];
+    $address2 = $_POST["address2"];
+    $deliveryDate = $_POST["deliveryDate"];
+    $gallonPrice = $_POST["gallonPrice"];
+    $totalPrice = $_POST["totalPrice"];
 });
 
 

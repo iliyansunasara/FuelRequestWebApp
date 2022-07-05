@@ -44,7 +44,8 @@
                         <h2 class="text-3xl">Fuel Quote Form</h2>
                         </div>
                         <div class="card-body">
-                            <form action="profileManagement.php" method="POST">
+                            <form action="/fuelQuoteFormSubmit" method="POST">
+                                @csrf
                                 <div class="grid justify-items-stretch">
                                     <label for="gallonsRequested" class="pt-2">Gallons Requested</label>
                                     <input type="number" id="gallonsRequested" name="gallonsRequested" class="text-center" placeholder="..." required>
@@ -62,7 +63,7 @@
                                     <label for="totalPrice" class="pt-2">Total Price</label>
                                     <input type="number" readonly id="totalPrice" name="totalPrice" class="text-center" value="<?php echo $totalPrice; ?>">
                                     <div class="grid justify-items-stretch pt-6">
-                                    <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">Submit</button>
+                                        <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">Submit</button>
                                     </div>
                                 </div>
                             </form>
