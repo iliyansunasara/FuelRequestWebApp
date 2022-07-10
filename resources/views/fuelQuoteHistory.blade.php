@@ -21,6 +21,13 @@
         </style>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
+        <div class = "collapse navbar-collapse" id = "collapsibleNavId">
+            <ul class = "navbar-nav mr-auto mt-2 mt-lg-0">
+                    <a class ="nav-link" href="{{url('/fuelQuoteForm')}}" style="color: white">Quote Form</a>
+                    <a class ="nav-link" href="{{url('/profileManagement')}}" style="color: white">Profile Management</a>
+            </ul>
+         
+
     <body class="relative flex justify-center min-h-screen h-14 bg-gradient-to-r from-violet-500 to-fuchsia-500 py-4 sm:pt-0">
     <div class = "flex flex-col mb-4">
         <div class="text-center text-cyan-700 dark:bg-gray-800 sm:rounded-lg">
