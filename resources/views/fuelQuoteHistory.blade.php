@@ -6,6 +6,7 @@
 
         <title>Laravel</title>
 
+        <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"-->
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -52,7 +53,7 @@
                     </tr>
                 </thead>
                 <tbody class = "bg-white divide-y divide-gray-200">
-                    <tr>
+                <tr>
                         <td class = "px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-500"> TestGallons </div>
                         </td>
@@ -69,6 +70,39 @@
                            <div class="text-sm text-gray-500"> $1111.11</div>
                         </td>
                     </tr>
+                    <?php /*
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $database = "";
+
+                        // Create Connection
+                        $connection = new mysqli($servername, $username, $password, $database);
+                        //Check Connection
+                        if ($connection->connect_error) {
+                            die("Connection failed: ". $connection->connect_error);
+                        }
+                        $sql = "SELECT * FROM #";
+                        $result = $connection->query($sql);
+
+                        if(!$result){
+                            die("Invalid query: " . $connection->error);
+                        }
+                        //read data from each row
+                        while($row = $result->fetch_assoc()){
+                            echo "
+                            <tr>
+                            <td>TestGallons</td>
+                            <td>123 calhoun rd</td>
+                            <td>06/29/2022</td>
+                            <td>$123.12</td>
+                            <td>$1111.11</td>
+                            </tr>
+
+                            ";
+                        }*/
+                    ?>
+
                 </tbody>
             </table>
         </div>
