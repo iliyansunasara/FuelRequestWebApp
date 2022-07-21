@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-    //return view('fuelQuoteHistory');
-    // return view('profileManagement');
-    // return view('fuelQuoteForm');
-    return view('welcome');
+    return view('register');
 });
 
 Route::get('/profileManagement', function () {
@@ -66,6 +63,7 @@ Route::post('/fuelQuoteFormSubmit', function () {
     $gallonPrice = $_POST["gallonPrice"];
     $totalPrice = $_POST["totalPrice"];
 });
+
 
 
 

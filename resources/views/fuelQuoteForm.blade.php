@@ -41,6 +41,11 @@
             $gallonPrice = "";
             $totalPrice = "";
         ?>
+         <div class = "collapse navbar-collapse" id = "collapsibleNavId">
+            <ul class = "navbar-nav mr-auto mt-2 mt-lg-0">
+                    <a class ="nav-link" href="{{url('/fuelQuoteHistory')}}" style="color: white">Quote History</a>
+                    <a class ="nav-link" href="{{url('/profileManagement')}}" style="color: white">Profile Management</a>
+            </ul>
         <div class="container">
             <div class="flex justify-center">
                 <div class="text-center text-cyan-700 dark:bg-gray-800 sm:rounded-lg">
