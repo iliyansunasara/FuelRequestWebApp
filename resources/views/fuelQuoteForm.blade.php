@@ -29,22 +29,27 @@
 
     <body class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <?php
-        // if(isset($_SESSION["client_username"])) {
-        //     $address1 = $_SESSION["address1"];
-        //     $address2 = $_SESSION["address2"];
-        //     // require_once 'includes/dbh-inc.php';
-        //     // require_once 'includes/functions-inc.php';
+            // $userID = $_SESSION['userID'];
+            $userID = "1111111";
+            //get address from database
+            $result = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
+            $address1 = $result[0]->address1;
+            $address2 = $result[0]->address2;
+
             $gallonsRequested = "...";
-            $address1 = "";
-            $address2 = "";
             $deliveryDate = "";
             $gallonPrice = "";
             $totalPrice = "";
+
+
+        
         ?>
          <div class = "collapse navbar-collapse" id = "collapsibleNavId">
-            <ul class = "navbar-nav mr-auto mt-2 mt-lg-0">
-                    <a class ="nav-link" href="{{url('/fuelQuoteHistory')}}" style="color: white">Quote History</a>
-                    <a class ="nav-link" href="{{url('/profileManagement')}}" style="color: white">Profile Management</a>
+            <ul class = "navbar-nav text-center mb-2 bg-zinc-600 py-1 rounded">
+                    <a class="nav-link mr-3 text-white hover:text-zinc-800 font-bold rounded" href="{{url('/fuelQuoteHistory')}}">Quote History</a>
+                    <a class="nav-link text-white hover:text-zinc-800 font-bold rounded" href="{{url('/profileManagement')}}">Manage Profile</a>
+                    <!-- <a class ="nav-link" href="{{url('/fuelQuoteHistory')}}" style="color: white">Quote History</a> -->
+                    <!-- <a class ="nav-link" href="{{url('/profileManagement')}}" style="color: white">Profile Management</a> -->
             </ul>
         <div class="container">
             <div class="flex justify-center">
@@ -65,7 +70,6 @@
                                     @if ($address2 != "")
                                         <label for="address2" class="pt-2">Address 2</label>
                                         <input type="text" readonly id="address2" name="address2" class="text-center" value="<?php echo $address2; ?>">
-                                        <br>
                                     @endif
                                     <label for="deliveryDate" class="pt-2">Delivery Date</label>
                                     <input type="date" id="deliveryDate" name="deliveryDate" class="text-center" placeholder="Delivery Date" value="<?php echo $deliveryDate; ?>">

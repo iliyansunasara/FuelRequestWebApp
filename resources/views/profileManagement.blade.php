@@ -23,21 +23,29 @@
     </head>
     <body class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <?php
-        // if(isset($_SESSION["client_username"])) {
-        //     $cUsername = $_SESSION["client_username"];
-        //     // require_once 'includes/dbh-inc.php';
-        //     // require_once 'includes/functions-inc.php';
-            $fullName = "...";
-            $address1 = "Address 1";
-            $address2 = "Address 2";
-            $city = "City";
-            $state = "State";
-            $zip = "ZIP Code";
+            // $userID = $_SESSION['userID'];
+            $userID = "1111111";
+            $result = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
+            if($result) {
+                $fullName = $result[0]->fullName;
+                $address1 = $result[0]->address1;
+                $address2 = $result[0]->address2;
+                $city = $result[0]->city;
+                $state = $result[0]->state;
+                $zip = $result[0]->zip;
+            } else {
+                $fullName = "";
+                $address1 = "";
+                $address2 = "";
+                $city = "";
+                $state = "";
+                $zip = "";
+            }
         ?>
         <div class = "collapse navbar-collapse" id = "collapsibleNavId">
-            <ul class = "navbar-nav mr-auto mt-2 mt-lg-0">
-                    <a class ="nav-link" href="{{url('/fuelQuoteHistory')}}" style="color: white">Quote History</a>
-                    <a class ="nav-link" href="{{url('/fuelQuoteForm')}}" style="color: white">Quote Form</a>
+            <ul class = "navbar-nav text-center mb-2 bg-zinc-600 py-1 px-4 rounded">
+                    <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteHistory')}}">Quote History</a>
+                    <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteForm')}}">Quote Form</a>
             </ul>
         <div class="container">
             <div class="flex justify-center">
@@ -52,15 +60,20 @@
                                 @csrf
                                 <div class="grid justify-items-stretch">
                                     <label for="fullName" class="pt-2">Full Name</label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="50"  name="fullName" class="text-center" placeholder="..." required>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="50"  name="fullName" class="text-center" placeholder="..." value="<?php echo $fullName;?>" required>
                                     <label for="address1" class="pt-2">Address 1</label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address1" class="text-center" placeholder="..." required>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address1" class="text-center" placeholder="..." value="<?php echo $address1;?>" required>
                                     <label for="address2" class="pt-2">Address 2</label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address2" class="text-center" placeholder="...">
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="address2" class="text-center" placeholder="..." value="<?php echo $address2;?>">
                                     <label for="city" class="pt-2">City</label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="city" class="text-center" placeholder="..." required>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="100"  name="city" class="text-center" placeholder="..." value="<?php echo $city;?>" required>
                                     <label for="state" class="pt-2">State</label>
-                                    <select name="state" class="text-center">
+                                    <select name="state" class="text-center" value="<?php echo $state;?>" required>
+                                        @if($state == "")
+                                            <option value="" selected>Select State</option>
+                                        @else
+                                            <option value="<?php echo $state;?>"><?php echo $state;?></option>
+                                        @endif
                                         <option value="AL">Alabama</option>
                                         <option value="AK">Alaska</option>
                                         <option value="AZ">Arizona</option>
@@ -118,7 +131,7 @@
                                         <option value="WY">Wyoming</option>
                                     </select>
                                     <label for="zip" class="pt-2">ZIP Code</label>
-                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" pattern=".{5,9}" maxlength="9" minLength="5" name="zip" class="text-center" placeholder="5 to 9 characters" required>
+                                    <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" pattern=".{5,9}" maxlength="9" minLength="5" name="zip" class="text-center" placeholder="5 to 9 characters" value="<?php echo $zip;?>" required>
                                     <div class="grid justify-items-stretch pt-6">
                                         <!-- <button type="submit" name="submit">Submit</button> -->
                                         <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">Submit</button>

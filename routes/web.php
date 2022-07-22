@@ -34,7 +34,9 @@ Route::get('/fuelQuoteHistory', function () {
 
 Route::post('/profileManagementSubmit', function () {
     //get the data from the form
-    $userID = "1111111";
+    // $userID = "1111111";
+    $userID = $_POST['userID'];
+    // $userID = $_SESSION['userID'];
     $fullName = $_POST["fullName"];
     $address1 = $_POST["address1"];
     $address2 = $_POST["address2"];
@@ -42,15 +44,21 @@ Route::post('/profileManagementSubmit', function () {
     $state = $_POST["state"];
     $zip = $_POST["zip"];
 
-    $result = DB::insert('insert into ClientInformation (user_id, fullName, address1, address2, city, state, zip) values (?, ?, ?, ?, ?, ?, ?)', [$userID, $fullName, $address1, $address2, $city, $state, $zip]);
-    if ($result) {
+    $result = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
+    if($result) {
+        $result2 = DB::update('update ClientInformation set fullName = ?, address1 = ?, address2 = ?, city = ?, state = ?, zip = ? where user_id = ?', [$fullName, $address1, $address2, $city, $state, $zip, $userID]);
+    } else {
+        $result2 = DB::insert('insert into ClientInformation (user_id, fullName, address1, address2, city, state, zip) values (?, ?, ?, ?, ?, ?, ?)', [$userID, $fullName, $address1, $address2, $city, $state, $zip]);
+    }
+
+    if ($result2) {
+        echo '<script>alert("You have successfully updated your information!")</script>';
         return view('profileManagement')->with('success', 'Profile updated successfully');
     } else {
+        echo '<script>alert("Nothing was changed! Try again!")</script>';
         return view('profileManagement')->with('error', 'Profile update failed');
     }
 
-    // $result = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
-    // print_r($result);
 
 });
 
