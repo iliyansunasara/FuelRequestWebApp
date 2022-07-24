@@ -1,18 +1,25 @@
 <?php
 
+    session_start(); 
+
     if(isset($_POST['submit'])){
         $username = $_POST['username'];
-        $password = $_POST['password'];
-        
-        if($username == "mcao" && $password == "hello"){
-            echo "<script>alert('You are logged in!')</script>";
+        $password = md5$_POST['password'];
+
+        $sql = "SELECT * FROM UserCredentials WHERE username='$username' AND password='$password'"; 
+        $result = mysqli_query($conn, $sql);
+
+        if($result){
+            $row = mysqli_fetch_assoc($result);
+            $_SESSION['username'] = $row['username'];
+            header("Location: welcome.blade.php");
         }
         else{
             echo "<script>alert('Wrong username/password')</script>";
         }
     }
 
-
+    
 ?>
 
 
