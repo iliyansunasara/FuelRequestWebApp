@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+ session_start();
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,30 @@ Route::get('/profileManagement', function () {
 Route::get('/login', function () {
     return view('login');
 });
+Route::post('/loginSubmit', function () {
+    $userID = $_POST['username'];
+    $password = $_POST['password'];
+
+    $result = DB::select('select * from UserCredentials where user_id = ? and password = ?', [$userID, $password]);
+    if ($result) {
+        $_SESSION['userID'] = $userID;
+        echo '<script>alert("Login Successful!");</script>';
+        $result2 = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
+        if($result2) {
+            return view('fuelQuoteForm');
+        }
+        else {
+            return view('profileManagement');
+        }
+    } else {
+        echo '<script>alert("Login Failed!");</script>';
+        return view('login');
+    }
+});
 Route::get('/register', function () {
     return view('register');
 });
+
 Route::get('/fuelQuoteForm', function () {
     return view('fuelQuoteForm');
 });
