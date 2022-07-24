@@ -16,9 +16,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $sql = "SELECT * FROM UserCredentials WHERE username='$username' AND password='$password'"; 
-        $result = mysqli_query($conn, $sql);
-
+        $result = DB::select('SELECT * FROM UserCredentials WHERE username=? AND password=?', [$username, $password]); 
         if($result){
             $row = mysqli_fetch_assoc($result);
             $_SESSION['username'] = $row['username'];
