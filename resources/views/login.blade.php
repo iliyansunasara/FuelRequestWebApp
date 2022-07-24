@@ -1,10 +1,20 @@
-<?php
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="login.css">
+    </head>
+
+    <?php
 
     session_start(); 
 
     if(isset($_POST['submit'])){
         $username = $_POST['username'];
-        $password = md5$_POST['password'];
+        $password = $_POST['password'];
 
         $sql = "SELECT * FROM UserCredentials WHERE username='$username' AND password='$password'"; 
         $result = mysqli_query($conn, $sql);
@@ -21,14 +31,6 @@
 
     
 ?>
-
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="login.css">
-    </head>
 
     <body>
         <div class="login-div">
