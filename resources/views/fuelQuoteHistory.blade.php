@@ -52,6 +52,27 @@
                         </th>
                     </tr>
                 </thead>
+                <?php
+                    $sql = "SELECT * FROM FuelQuote WHERE user_id = '1111111';";
+                    $result = mysqli_query($conn,$sql);
+                    $resultCheck = mysqli_num_rows($result);
+                    $addressResult = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
+                    $address1 = $addressResult[0]->address1;
+                    $address2 = $addressResult[0]->address2;
+                    if ($resultCheck > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<tr>";
+                            echo "<th>".$row[gallonsRequested];
+                            echo "<th>".$address1;
+                            echo "<th>".$row[deliveryDate];
+                            echo "<th>".$row[suggestedPrice];
+                            echo "<th>".$row[totalDue]
+
+
+                        }
+                    }
+
+                ?>
                 <tbody class = "bg-white divide-y divide-gray-200">
                 <tr>
                         <td class = "px-6 py-4 whitespace-nowrap">
@@ -70,38 +91,6 @@
                            <div class="text-sm text-gray-500"> $1111.11</div>
                         </td>
                     </tr>
-                    <?php /*
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $database = "";
-
-                        // Create Connection
-                        $connection = new mysqli($servername, $username, $password, $database);
-                        //Check Connection
-                        if ($connection->connect_error) {
-                            die("Connection failed: ". $connection->connect_error);
-                        }
-                        $sql = "SELECT * FROM #";
-                        $result = $connection->query($sql);
-
-                        if(!$result){
-                            die("Invalid query: " . $connection->error);
-                        }
-                        //read data from each row
-                        while($row = $result->fetch_assoc()){
-                            echo "
-                            <tr>
-                            <td>TestGallons</td>
-                            <td>123 calhoun rd</td>
-                            <td>06/29/2022</td>
-                            <td>$123.12</td>
-                            <td>$1111.11</td>
-                            </tr>
-
-                            ";
-                        }*/
-                    ?>
 
                 </tbody>
             </table>
