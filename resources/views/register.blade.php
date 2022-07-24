@@ -11,32 +11,18 @@
     
     session_start();
 
-    if (isset($_POST['submit'])) {
+    if(isset($_POST['submit'])){
         $username = $_POST['username'];
-        $password = md5($_POST['password']);
-        $cpassword = md5($_POST['cpassword']);
-    
-        if ($password == $cpassword) {
-            $sql = "SELECT * FROM users WHERE username='$username'";
-            $result = mysqli_query($conn, $sql);
-            if (!$result->num_rows > 0) {
-                $sql = "INSERT INTO users (username, password)
-                        VALUES ('$username', '$email', '$password')";
-                $result = mysqli_query($conn, $sql);
-                if ($result) {
-                    echo "<script>alert('Wow! User Registration Completed.')</script>";
-                    $username = "";
-                    $_POST['password'] = "";
-                    $_POST['cpassword'] = "";
-                } else {
-                    echo "<script>alert('Woops! Something Wrong Went.')</script>";
-                }
-            } else {
-                echo "<script>alert('Woops! Email Already Exists.')</script>";
-            }
-            
-        } else {
-            echo "<script>alert('Password Not Matched.')</script>";
+        $password = $_POST['password'];
+        $confirmPassword = $_POST['confirmPassword'];
+
+        if($password == $confirmPassword){
+            $result = DB::insert('INSERT INTO UserCredentials (user_id, password) 
+                    VALUES (?, ?)', [$username, $password]);
+            echo "<script>alert('You have successfully registered!')</script>";
+        }
+        else{
+            echo "<script>alert('Password does not match. Try again!')</script>";
         }
     }
 
