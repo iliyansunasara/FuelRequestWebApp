@@ -66,7 +66,7 @@
                             echo "<th>".$address1;
                             echo "<th>".$row[deliveryDate];
                             echo "<th>".$row[suggestedPrice];
-                            echo "<th>".$row[totalDue]
+                            echo "<th>".$row[totalDue];
 
 
                         }

@@ -48,7 +48,7 @@ return [
             'url' => env('DATABASE_URL'),
             // 'host' => env('DB_HOST', 'localhost'),
             // 'host' => env('DB_HOST', '127.0.0.1'),
-            'host' => env('DB_HOST', '172.28.176.1'),
+            'host' => env('DB_HOST', '172.23.0.1'),
             // 'host' => env('DB_HOST', 'db'),
             'port' => env('DB_PORT', '49153'),
             'database' => env('DB_DATABASE', 'FuelDB'),

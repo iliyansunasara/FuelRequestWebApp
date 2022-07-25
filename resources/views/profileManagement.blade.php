@@ -23,8 +23,9 @@
     </head>
     <body class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <?php
-            // $userID = $_SESSION['userID'];
-            $userID = "1111111";
+            // session_start();
+            $userID = $_SESSION['userID'];
+            // $userID = "1111111";
             $result = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
             if($result) {
                 $fullName = $result[0]->fullName;
@@ -44,8 +45,10 @@
         ?>
         <div class = "collapse navbar-collapse" id = "collapsibleNavId">
             <ul class = "navbar-nav text-center mb-2 bg-zinc-600 py-1 px-4 rounded">
+                @if($fullName != "")
                     <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteHistory')}}">Quote History</a>
                     <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteForm')}}">Quote Form</a>
+                @endif
             </ul>
         <div class="container">
             <div class="flex justify-center">
@@ -59,6 +62,8 @@
                             <form action="/profileManagementSubmit" method="POST">
                                 @csrf
                                 <div class="grid justify-items-stretch">
+                                    <label for="userID">User ID</label>
+                                    <input type="text" class="text-center" id="userID" name="userID" value="{{$userID}}" readonly>
                                     <label for="fullName" class="pt-2">Full Name</label>
                                     <input oninput="this.value=this.value.slice(0,this.maxLength)" type="text" maxlength="50"  name="fullName" class="text-center" placeholder="..." value="<?php echo $fullName;?>" required>
                                     <label for="address1" class="pt-2">Address 1</label>

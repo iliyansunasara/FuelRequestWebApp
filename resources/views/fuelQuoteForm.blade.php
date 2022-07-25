@@ -29,8 +29,7 @@
 
     <body class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <?php
-            // $userID = $_SESSION['userID'];
-            $userID = "1111111";
+            $userID = $_SESSION['userID'];
             //get address from database
             $result = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
             $address1 = $result[0]->address1;
@@ -63,6 +62,7 @@
                             <form action="/fuelQuoteFormSubmit" method="POST">
                                 @csrf
                                 <div class="grid justify-items-stretch">
+                                <input type="text" class="text-center" id="userID" name="userID" value="{{$userID}}" hidden>
                                     <label for="gallonsRequested" class="pt-2">Gallons Requested</label>
                                     <input type="number" id="gallonsRequested" name="gallonsRequested" class="text-center" placeholder="..." required>
                                     <label for="address1" class="pt-2">Address 1</label>

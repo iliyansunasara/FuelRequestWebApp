@@ -78,9 +78,7 @@ Route::get('/fuelQuoteHistory', function () {
 
 Route::post('/profileManagementSubmit', function () {
     //get the data from the form
-    // $userID = "1111111";
     $userID = $_POST['userID'];
-    // $userID = $_SESSION['userID'];
     $fullName = $_POST["fullName"];
     $address1 = $_POST["address1"];
     $address2 = $_POST["address2"];
@@ -96,11 +94,11 @@ Route::post('/profileManagementSubmit', function () {
     }
 
     if ($result2) {
-        echo '<script>alert("You have successfully updated your information!")</script>';
-        return view('profileManagement')->with('success', 'Profile updated successfully');
+        echo '<script>alert("You have successfully updated your information! Please login again!")</script>';
+        return view('login');
     } else {
-        echo '<script>alert("Nothing was changed! Try again!")</script>';
-        return view('profileManagement')->with('error', 'Profile update failed');
+        echo '<script>alert("Nothing was changed! Login and Try again!")</script>';
+        return view('login');
     }
 
 
@@ -108,12 +106,23 @@ Route::post('/profileManagementSubmit', function () {
 
 Route::post('/fuelQuoteFormSubmit', function () {
     //get the data from the form
-    $gallonsRequested = $_POST["gallonsRequested"];
+    $userID = $_POST['userID'];
     $address1 = $_POST["address1"];
-    $address2 = $_POST["address2"];
+    $gallonsRequested = $_POST["gallonsRequested"];
     $deliveryDate = $_POST["deliveryDate"];
-    $gallonPrice = $_POST["gallonPrice"];
-    $totalPrice = $_POST["totalPrice"];
+    // $gallonPrice = $_POST["gallonPrice"];
+    // $totalDue = $_POST["totalPrice"];
+    $gallonPrice = 2.50;
+    $totalDue = $gallonPrice * $gallonsRequested;
+
+    $result = DB::insert('insert into FuelQuote (user_id, address1, gallonsReq, deliveryDate, gallonPrice, totalDue) values (?, ?, ?, ?, ?, ?)', [$userID, $address1, $gallonsRequested, $deliveryDate, $gallonPrice, $totalDue]);
+    if ($result) {
+        echo '<script>alert("You have successfully submitted your quote!")</script>';
+        return view('login');
+    } else {
+        echo '<script>alert("Something went wrong!")</script>';
+        return view('login');
+    }
 });
 
 
