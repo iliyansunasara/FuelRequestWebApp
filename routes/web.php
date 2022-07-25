@@ -26,9 +26,12 @@ Route::get('/login', function () {
 Route::post('/loginSubmit', function () {
     $userID = $_POST['username'];
     $password = $_POST['password'];
+    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+    $checkPwd = "";
 
-    $result = DB::select('SELECT * FROM UserCredentials WHERE user_id=? and password=?', [$userID, $password]);
-    if ($result) {
+    $result = DB::select('SELECT * FROM UserCredentials WHERE user_id=?', [$userID]);
+    $checkPwd = password_verify($password, $result[0]->password);
+    if ($checkPwd == true) {
         $_SESSION['userID'] = $userID;
         echo '<script>alert("Login Successful!");</script>';
         $result2 = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
@@ -51,6 +54,7 @@ Route::post('/registerSubmit', function () {
     $userID = $_POST['username'];
     $password = $_POST['password'];
     $cpassword = $_POST['confirmPassword'];
+    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
     $result = DB::select('select * from UserCredentials where user_id = ?', [$userID]);
     if($result){
@@ -59,7 +63,7 @@ Route::post('/registerSubmit', function () {
     }
     else{
         if($password == $cpassword){
-            $result2 = DB::INSERT('INSERT INTO UserCredentials (user_id, password) VALUES (?, ?)', [$userID, $password]);
+            $result2 = DB::INSERT('INSERT INTO UserCredentials (user_id, password) VALUES (?, ?)', [$userID, $hashedPwd]);
             echo "<script>alert('You have successfully registered!')</script>";
             return view('login');
         }
