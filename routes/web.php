@@ -27,7 +27,7 @@ Route::post('/loginSubmit', function () {
     $userID = $_POST['username'];
     $password = $_POST['password'];
 
-    $result = DB::select('select * from UserCredentials where user_id = ? and password = ?', [$userID, $password]);
+    $result = DB::select('SELECT * FROM UserCredentials WHERE user_id=? and password=?', [$userID, $password]);
     if ($result) {
         $_SESSION['userID'] = $userID;
         echo '<script>alert("Login Successful!");</script>';
@@ -45,6 +45,28 @@ Route::post('/loginSubmit', function () {
 });
 Route::get('/register', function () {
     return view('register');
+});
+
+Route::post('/registerSubmit', function () {
+    $userID = $_POST['username'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['confirmPassword'];
+
+    $result = DB::select('select * from UserCredentials where user_id = ?', [$userID]);
+    if($result){
+        echo "<script>alert('You already have an account. Try logging in!')</script>";
+        return view('login');
+    }
+    else{
+        if($password == $cpassword){
+            $result2 = DB::INSERT('INSERT INTO UserCredentials (user_id, password) VALUES (?, ?)', [$userID, $password]);
+            echo "<script>alert('You have successfully registered!')</script>";
+            return view('login');
+        }
+        else{
+            echo "<script>alert('Passwords do not match. Try again!')</script>";
+        }
+    }
 });
 
 Route::get('/fuelQuoteForm', function () {
