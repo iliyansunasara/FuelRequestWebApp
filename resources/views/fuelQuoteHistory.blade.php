@@ -56,7 +56,8 @@
                     $userID = $_SESSION['userID'];
                     $sql = "SELECT * FROM FuelQuote WHERE user_id = '".$userID."';";
                     $conn = mysqli_init();
-                    mysqli_real_connect($conn, "172.23.0.1", "root", "mysqlpw", "FuelDB", 49153, MYSQLI_CLIENT_FOUND_ROWS);
+                    // mysqli_real_connect($conn, "172.23.0.1", "root", "mysqlpw", "FuelDB", 49153, MYSQLI_CLIENT_FOUND_ROWS);
+                    mysqli_real_connect($conn, DB::connection()->getConfig("host"), DB::connection()->getConfig("username"), DB::connection()->getConfig("password"), DB::connection()->getConfig("database"), DB::connection()->getConfig("port"), MYSQLI_CLIENT_FOUND_ROWS);
                     $result = mysqli_query($conn,$sql);
                     $resultCheck = mysqli_num_rows($result);
                     $addressResult = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
