@@ -53,27 +53,26 @@
                     </tr>
                 </thead>
                 <?php
-                    $sql = "SELECT * FROM FuelQuote WHERE user_id = '1111111';";
+                    $userID = $_SESSION['userID'];
+                    $sql = "SELECT * FROM FuelQuote WHERE user_id = '".$userID."';";
+                    $conn = mysqli_init();
+                    mysqli_real_connect($conn, "172.23.0.1", "root", "mysqlpw", "FuelDB", 49153, MYSQLI_CLIENT_FOUND_ROWS);
                     $result = mysqli_query($conn,$sql);
                     $resultCheck = mysqli_num_rows($result);
                     $addressResult = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
-                    $address1 = $addressResult[0]->address1;
-                    $address2 = $addressResult[0]->address2;
                     if ($resultCheck > 0){
                         while($row = mysqli_fetch_assoc($result)){
                             echo "<tr>";
-                            echo "<th>".$row[gallonsRequested];
-                            echo "<th>".$address1;
-                            echo "<th>".$row[deliveryDate];
-                            echo "<th>".$row[suggestedPrice];
-                            echo "<th>".$row[totalDue];
-
-
+                            echo "<th>".$row['gallonsReq']."</th>";
+                            echo "<th>".$row['address1']."</th>";
+                            echo "<th>".$row['deliveryDate']."</th>";
+                            echo "<th>".$row['gallonPrice']."</th>";
+                            echo "<th>".$row['totalDue']."</th>";
                         }
                     }
 
                 ?>
-                <tbody class = "bg-white divide-y divide-gray-200">
+                <!-- <tbody class = "bg-white divide-y divide-gray-200">
                 <tr>
                         <td class = "px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-500"> TestGallons </div>
@@ -92,7 +91,7 @@
                         </td>
                     </tr>
 
-                </tbody>
+                </tbody> -->
             </table>
         </div>
     </div>
