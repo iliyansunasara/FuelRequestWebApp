@@ -22,79 +22,82 @@
         </style>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-        <div class = "collapse navbar-collapse" id = "collapsibleNavId">
-            <ul class = "navbar-nav mr-auto mt-2 mt-lg-0">
-                    <a class ="nav-link" href="{{url('/fuelQuoteForm')}}" style="color: white">Quote Form</a>
-                    <a class ="nav-link" href="{{url('/profileManagement')}}" style="color: white">Profile Management</a>
+
+    <body class="dark:bg-gray-900 py-0">
+        <div>
+            <ul class = "navbar-nav text-center mb-2 bg-zinc-600 py-1 rounded">
+                <a class="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteForm')}}">Quote Form</a>
+                <a class="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/profileManagement')}}">Manage Profile</a>
+                <a class="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/logout')}}">Logout</a>
             </ul>
-         
-
-    <body class="relative flex justify-center min-h-screen h-14 bg-gradient-to-r from-violet-500 to-fuchsia-500 py-4 sm:pt-0">
-    <div class = "flex flex-col mb-4">
-        <div class="text-center text-cyan-700 dark:bg-gray-800 sm:rounded-lg">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class = "bg-gray-50">
-                    <tr>
-                        <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <x-column-header> Gallons Requested </x-column-header>
-                        </th>
-                        <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <x-column-header> Delivery Address </x-column-header>
-                        </th>
-                        <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <x-column-header> Delivery Date </x-column-header>
-                        </th>
-                        <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <x-column-header> Suggest Price Per Gallon </x-column-header>
-                        </th>
-                        <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <x-column-header> Total Amount Due </x-column-header>
-                        </th>
-                    </tr>
-                </thead>
-                <?php
-                    $userID = $_SESSION['userID'];
-                    $sql = "SELECT * FROM FuelQuote WHERE user_id = '".$userID."';";
-                    $conn = mysqli_init();
-                    // mysqli_real_connect($conn, "172.23.0.1", "root", "mysqlpw", "FuelDB", 49153, MYSQLI_CLIENT_FOUND_ROWS);
-                    mysqli_real_connect($conn, DB::connection()->getConfig("host"), DB::connection()->getConfig("username"), DB::connection()->getConfig("password"), DB::connection()->getConfig("database"), DB::connection()->getConfig("port"), MYSQLI_CLIENT_FOUND_ROWS);
-                    $result = mysqli_query($conn,$sql);
-                    $resultCheck = mysqli_num_rows($result);
-                    $addressResult = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
-                    if ($resultCheck > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo "<tr>";
-                            echo "<th>".$row['gallonsReq']."</th>";
-                            echo "<th>".$row['address1']."</th>";
-                            echo "<th>".$row['deliveryDate']."</th>";
-                            echo "<th>".$row['gallonPrice']."</th>";
-                            echo "<th>".$row['totalDue']."</th>";
-                        }
-                    }
-
-                ?>
-                <!-- <tbody class = "bg-white divide-y divide-gray-200">
-                <tr>
-                        <td class = "px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-500"> TestGallons </div>
-                        </td>
-                        <td class = "px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-500"> 123 calhoun rd </div>
-                        </td>
-                        <td class = "px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-500"> 06/29/2022</div>
-                        </td>
-                        <td class = "px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-500"> $123.12</div>
-                        </td>
-                        <td class = "px-6 py-4 whitespace-nowrap">
-                           <div class="text-sm text-gray-500"> $1111.11</div>
-                        </td>
-                    </tr>
-
-                </tbody> -->
-            </table>
         </div>
-    </div>
+        <div class= "relative flex justify-center min-h-screen h-14 dark:bg-gray-900 py-4 pt-2">
+            <div class = "flex flex-col mb-4">
+                <div class="text-center text-cyan-700 dark:bg-gray-800 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class = "bg-gray-200">
+                            <tr>
+                                <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <x-column-header> Gallons Requested </x-column-header>
+                                </th>
+                                <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <x-column-header> Delivery Address </x-column-header>
+                                </th>
+                                <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <x-column-header> Delivery Date </x-column-header>
+                                </th>
+                                <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <x-column-header> Suggest Price Per Gallon </x-column-header>
+                                </th>
+                                <th scope = "col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <x-column-header> Total Amount Due </x-column-header>
+                                </th>
+                            </tr>
+                        </thead>
+                        <?php
+                            $userID = $_SESSION['userID'];
+                            $sql = "SELECT * FROM FuelQuote WHERE user_id = '".$userID."';";
+                            $conn = mysqli_init();
+                            // mysqli_real_connect($conn, "172.23.0.1", "root", "mysqlpw", "FuelDB", 49153, MYSQLI_CLIENT_FOUND_ROWS);
+                            mysqli_real_connect($conn, DB::connection()->getConfig("host"), DB::connection()->getConfig("username"), DB::connection()->getConfig("password"), DB::connection()->getConfig("database"), DB::connection()->getConfig("port"), MYSQLI_CLIENT_FOUND_ROWS);
+                            $result = mysqli_query($conn,$sql);
+                            $resultCheck = mysqli_num_rows($result);
+                            $addressResult = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
+                            if ($resultCheck > 0){
+                                while($row = mysqli_fetch_assoc($result)){
+                                    echo "<tr>";
+                                    echo "<th>".$row['gallonsReq']."</th>";
+                                    echo "<th>".$row['address1']."</th>";
+                                    echo "<th>".$row['deliveryDate']."</th>";
+                                    echo "<th>".$row['gallonPrice']."</th>";
+                                    echo "<th>".$row['totalDue']."</th>";
+                                }
+                            }
+
+                        ?>
+                        <!-- <tbody class = "bg-white divide-y divide-gray-200">
+                        <tr>
+                                <td class = "px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500"> TestGallons </div>
+                                </td>
+                                <td class = "px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500"> 123 calhoun rd </div>
+                                </td>
+                                <td class = "px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500"> 06/29/2022</div>
+                                </td>
+                                <td class = "px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500"> $123.12</div>
+                                </td>
+                                <td class = "px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500"> $1111.11</div>
+                                </td>
+                            </tr>
+
+                        </tbody> -->
+                    </table>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

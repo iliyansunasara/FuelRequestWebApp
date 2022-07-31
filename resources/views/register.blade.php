@@ -9,13 +9,15 @@
             body {
                 background-image: url("background.jpg");
                 background-size: 100% 100%;
-                background-color: rgba(12, 18, 74, 0.993);
+                background-color: rgb(17 24 39);
             }
             .login-div {
                 margin: 100px auto;
                 width: 350px;
-                background-color: #fff;
+                /* background-color: #fff; */
+                background-color: rgb(31 41 55);
                 padding: 60px;
+                border-radius: 8px;
             }
             .logo {
                 background-color: rgba(35, 30, 30, 0.12);
@@ -30,7 +32,7 @@
             }
             .title, .sub-title {
                 text-align: center;
-                color: #505050;
+                color: #fff;
             }
             .title {
                 font-weight: bolder;
@@ -53,6 +55,7 @@
                 border: 1px solid rgba(0, 0, 0, 0.2);
                 padding: 15px;
                 margin: 10px 0;
+                background-color: #fff;
             }
             .form svg {
                 height: 25px;
@@ -66,19 +69,40 @@
                 justify-content: space-between;
                 padding: 5px 0px;
                 margin-bottom: 30px;
+                color: #fff;
             }
-            button {
+            .btn {
                 width: 100%;
                 padding: 12px 10px;
                 border: none;
                 font-size: 18px;
                 border-radius: 30px;
-                background-color: rgba(22, 22, 184, 0.918);
+                /* background-color: rgba(22, 22, 184, 0.918); */
+                background-color: rgb(14 116 144);
                 color: #fff;
                 margin-bottom: 5px;
             }
+            .btn:hover {
+                background-color: rgb(22 78 99);
+                color: #fff;
+            }
+            .sign-uptxt {
+                text-align: center;
+                color: #fff;
+            }
             .sign-up {
                 text-align: center;
+                color: #fff;
+            }
+            .sign-up:hover {
+                color: #aaa;
+            }
+            .forgot {
+                text-align: center;
+                color: #fff;
+            }
+            .forgot:hover {
+                color: #aaa;
             }
         </style>
     </head>  
@@ -115,10 +139,10 @@
                     <input type="password" placeholder="Confirm Password" name="confirmPassword"  required>
                 </div>
 
-                <button name="submit" class="signin">CONFIRM</button>
+                <button name="submit" class="btn">CONFIRM</button>
 
-                <p class="sign-up"> Already have an account?
-                    <a href="{{url('/login')}}">Login here!</a>
+                <p class="sign-uptxt"> Already have an account?
+                    <a class="sign-up" href="{{url('/login')}}">Login here!</a>
                 </p>
 
                 </form>

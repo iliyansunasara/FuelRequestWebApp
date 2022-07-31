@@ -17,7 +17,8 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
 
-    <body class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <!-- <body class="relative items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0"> -->
+    <body class="dark:bg-gray-900 py-0">
         <?php
             $userID = $_SESSION['userID'];
             //get address from database
@@ -36,14 +37,14 @@
             $gallonPrice = 1.50;
             $totalPrice = 0;
         ?>
-         <div class = "collapse navbar-collapse" id = "collapsibleNavId">
+        <div>
             <ul class = "navbar-nav text-center mb-2 bg-zinc-600 py-1 rounded">
-                    <a class="nav-link mr-3 text-white hover:text-zinc-800 font-bold rounded" href="{{url('/fuelQuoteHistory')}}">Quote History</a>
-                    <a class="nav-link text-white hover:text-zinc-800 font-bold rounded" href="{{url('/profileManagement')}}">Manage Profile</a>
-                    <!-- <a class ="nav-link" href="{{url('/fuelQuoteHistory')}}" style="color: white">Quote History</a> -->
-                    <!-- <a class ="nav-link" href="{{url('/profileManagement')}}" style="color: white">Profile Management</a> -->
+                <a class="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteHistory')}}">Quote History</a>
+                <a class="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/profileManagement')}}">Manage Profile</a>
+                <a class="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/logout')}}">Logout</a>
             </ul>
-        <div class="container">
+        </div>
+        <div class="container pt-2">
             <div class="flex justify-center">
                 <div class="text-center text-cyan-700 dark:bg-gray-800 sm:rounded-lg">
                     <div class="p-6">

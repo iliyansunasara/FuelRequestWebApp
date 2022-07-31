@@ -132,6 +132,11 @@ Route::post('/fuelQuoteFormSubmit', function () {
     }
 });
 
+Route::get('/logout', function () {
+    session_destroy();
+    return view('login');
+});
+
 
 
 

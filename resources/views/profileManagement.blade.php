@@ -16,11 +16,11 @@
         </style>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+
+    <!-- <body class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0"> -->
+    <body class="dark:bg-gray-900 py-0">
         <?php
-            // session_start();
             $userID = $_SESSION['userID'];
-            // $userID = "1111111";
             $result = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
             if($result) {
                 $fullName = $result[0]->fullName;
@@ -38,17 +38,29 @@
                 $zip = "";
             }
         ?>
-        <div class = "collapse navbar-collapse" id = "collapsibleNavId">
+        <div>
             <ul class = "navbar-nav text-center mb-2 bg-zinc-600 py-1 px-4 rounded">
                 @if($fullName != "")
                     <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteHistory')}}">Quote History</a>
                     <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteForm')}}">Quote Form</a>
                 @endif
+                <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/logout')}}">Logout</a>
             </ul>
-        <div class="container">
+        </div>
+        <div class="container pt-2">
             <div class="flex justify-center">
                 <div class="text-center text-cyan-700 dark:bg-gray-800 sm:rounded-lg">
-                    <div class="p-6">
+                    <!-- <div>
+                        <ul class = "navbar-nav text-center mb-2 bg-zinc-600 py-1 px-4 rounded">
+                            @if($fullName != "")
+                                <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteHistory')}}">Quote History</a>
+                                <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteForm')}}">Quote Form</a>
+                            @endif
+                            <a class ="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/login')}}">Logout</a>
+                        </ul>
+                    </div> -->
+
+                    <div class="p-6 pt-3">
                     <div class="card font-bold">
                         <div class="card-header">
                             <h2 class="text-3xl">Profile Management</h2>
