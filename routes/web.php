@@ -76,6 +76,9 @@ Route::post('/registerSubmit', function () {
 Route::get('/fuelQuoteForm', function () {
     return view('fuelQuoteForm');
 });
+Route::post('/fuelQF', function () {
+    return view('fuelQuoteForm');
+});
 Route::get('/fuelQuoteHistory', function () {
     return view('fuelQuoteHistory');
 });
@@ -116,7 +119,7 @@ Route::post('/fuelQuoteFormSubmit', function () {
     $deliveryDate = $_POST["deliveryDate"];
     // $gallonPrice = $_POST["gallonPrice"];
     // $totalDue = $_POST["totalPrice"];
-    $gallonPrice = 2.50;
+    $gallonPrice = 1.50;
     $totalDue = $gallonPrice * $gallonsRequested;
 
     $result = DB::insert('insert into FuelQuote (user_id, address1, gallonsReq, deliveryDate, gallonPrice, totalDue) values (?, ?, ?, ?, ?, ?)', [$userID, $address1, $gallonsRequested, $deliveryDate, $gallonPrice, $totalDue]);

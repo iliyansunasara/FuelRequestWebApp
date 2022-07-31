@@ -21,11 +21,6 @@
         </style>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <?php
-        class pricingModule {
-            
-        }
-    ?>
 
     <body class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <?php
@@ -34,14 +29,17 @@
             $result = DB::select('select * from ClientInformation where user_id = ?', [$userID]);
             $address1 = $result[0]->address1;
             $address2 = $result[0]->address2;
-
+            $state = $result[0]->state;
+            $result2 = DB::select('select * from FuelQuote where user_id = ?', [$userID]);
+            if($result2) {
+                $histDisc = .1;
+            } else {
+                $histDisc = 0;
+            }
             $gallonsRequested = "...";
             $deliveryDate = "";
-            $gallonPrice = "";
-            $totalPrice = "";
-
-
-        
+            $gallonPrice = 1.50;
+            $totalPrice = 0;
         ?>
          <div class = "collapse navbar-collapse" id = "collapsibleNavId">
             <ul class = "navbar-nav text-center mb-2 bg-zinc-600 py-1 rounded">
@@ -60,28 +58,49 @@
                         </div>
                         <div class="card-body">
                             <form action="/fuelQuoteFormSubmit" method="POST">
+                            <!-- <form> -->
                                 @csrf
                                 <div class="grid justify-items-stretch">
                                 <input type="text" class="text-center" id="userID" name="userID" value="{{$userID}}" hidden>
                                     <label for="gallonsRequested" class="pt-2">Gallons Requested</label>
-                                    <input type="number" id="gallonsRequested" name="gallonsRequested" class="text-center" placeholder="..." required>
-                                    <label for="address1" class="pt-2">Address 1</label>
-                                    <input type="text" readonly id="address1" name="address1" class="text-center" value="<?php echo $address1;?>">
-                                    @if ($address2 != "")
-                                        <label for="address2" class="pt-2">Address 2</label>
-                                        <input type="text" readonly id="address2" name="address2" class="text-center" value="<?php echo $address2; ?>">
-                                    @endif
+                                    <input type="number" min="1" id="gallonsRequested" name="gallonsRequested" onchange="PricingModule(this.value)" class="text-center" placeholder="..." required>
+                                    <label for="address1" class="pt-2">Address</label>
+                                    <input type="text" readonly id="address1" name="address1" class="text-center" value="<?php echo $address1;?>, <?php echo $address2;?>">
+                                    <label for="state" class="pt-2">State</label>
+                                    <input type="text" readonly id="state" name="state" class="text-center" value="<?php echo $state; ?>">
                                     <label for="deliveryDate" class="pt-2">Delivery Date</label>
                                     <input type="date" id="deliveryDate" name="deliveryDate" class="text-center" placeholder="Delivery Date" value="<?php echo $deliveryDate; ?>">
-                                    <label for="gallonPrice" class="pt-2">Gallon Price</label>
-                                    <input type="number" readonly id="gallonPrice" name="gallonPrice" class="text-center" value="<?php echo $gallonPrice; ?>">
-                                    <label for="totalPrice" class="pt-2">Total Price</label>
+                                    <label for="gallonPrice" class="pt-2">Gallon Price ($)</label>
+                                    <input type="number" readonly id="gallonPrice" name="gallonPrice" class="text-center" value="<?php echo number_format($gallonPrice,2); ?>">
+                                    <label for="totalPrice" class="pt-2">Total Price ($)</label>
                                     <input type="number" readonly id="totalPrice" name="totalPrice" class="text-center" value="<?php echo $totalPrice; ?>">
+                                        <script>
+                                            function PricingModule(gallonsReq) {
+                                                var gallonAmountCharge = .03;
+                                                if (gallonsReq > 1000) {
+                                                    gallonAmountCharge = .02;
+                                                }
+                                                var locationFactor = .04;
+                                                if (document.getElementById("state").value == "TX") {
+                                                    locationFactor = .02;
+                                                }
+                                                var historyDiscount = <?php echo $histDisc; ?>;
+
+                                                var margin = (locationFactor - historyDiscount + gallonAmountCharge + .1) * 1.5;
+                                                var gallonP = 1.5 + margin;
+                                                var totalP = gallonsReq * gallonP;
+                                                var divobj = document.getElementById('totalPrice');
+                                                var divobj2 = document.getElementById('gallonPrice');
+                                                divobj.value = totalP.toFixed(2);
+                                                divobj2.value = gallonP.toFixed(2);
+                                            }
+                                        </script>
                                     <div class="grid justify-items-stretch pt-6">
-                                        <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">Submit</button>
+                                        <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to submit?')">Submit</button>
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                     </div>
