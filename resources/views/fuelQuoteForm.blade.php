@@ -61,7 +61,11 @@
                                     <label for="gallonsRequested" class="pt-2">Gallons Requested</label>
                                     <input type="number" min="1" id="gallonsRequested" name="gallonsRequested" onchange="PricingModule(this.value)" class="text-center" placeholder="..." required>
                                     <label for="address1" class="pt-2">Address</label>
-                                    <input type="text" readonly id="address1" name="address1" class="text-center" value="<?php echo $address1;?>, <?php echo $address2;?>">
+                                    @if($address2 == "")
+                                        <input type="text" id="address1" name="address1" class="text-center" value="<?php echo $address1;?>" required>
+                                    @else
+                                        <input type="text" readonly id="address1" name="address1" class="text-center" value="<?php echo $address1;?>, <?php echo $address2;?>">
+                                    @endif
                                     <label for="state" class="pt-2">State</label>
                                     <input type="text" readonly id="state" name="state" class="text-center" value="<?php echo $state; ?>">
                                     <label for="deliveryDate" class="pt-2">Delivery Date</label>
