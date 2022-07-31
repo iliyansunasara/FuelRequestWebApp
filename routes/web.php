@@ -117,18 +117,16 @@ Route::post('/fuelQuoteFormSubmit', function () {
     $address1 = $_POST["address1"];
     $gallonsRequested = $_POST["gallonsRequested"];
     $deliveryDate = $_POST["deliveryDate"];
-    // $gallonPrice = $_POST["gallonPrice"];
-    // $totalDue = $_POST["totalPrice"];
-    $gallonPrice = 1.50;
-    $totalDue = $gallonPrice * $gallonsRequested;
+    $gallonPrice = $_POST["gallonPrice"];
+    $totalDue = $_POST["totalPrice"];
 
     $result = DB::insert('insert into FuelQuote (user_id, address1, gallonsReq, deliveryDate, gallonPrice, totalDue) values (?, ?, ?, ?, ?, ?)', [$userID, $address1, $gallonsRequested, $deliveryDate, $gallonPrice, $totalDue]);
     if ($result) {
         echo '<script>alert("You have successfully submitted your quote!")</script>';
-        return view('login');
+        return view('fuelQuoteHistory');
     } else {
         echo '<script>alert("Something went wrong!")</script>';
-        return view('login');
+        return view('fuelQuoteForm');
     }
 });
 

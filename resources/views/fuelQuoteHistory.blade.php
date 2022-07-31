@@ -23,7 +23,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
 
-    <body class="dark:bg-gray-900 py-0">
+    <body class="dark:bg-gray-900 py-0 text-gray-100">
         <div>
             <ul class = "navbar-nav text-center mb-2 bg-zinc-600 py-1 rounded">
                 <a class="nav-link text-white hover:text-zinc-800 font-bold py-1 px-4 rounded" href="{{url('/fuelQuoteForm')}}">Quote Form</a>
@@ -33,7 +33,7 @@
         </div>
         <div class= "relative flex justify-center min-h-screen h-14 dark:bg-gray-900 py-4 pt-2">
             <div class = "flex flex-col mb-4">
-                <div class="text-center text-cyan-700 dark:bg-gray-800 sm:rounded-lg">
+                <div class="text-center text-gray-100 dark:bg-gray-800 sm:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class = "bg-gray-200">
                             <tr>
@@ -71,6 +71,7 @@
                                     echo "<th>".$row['deliveryDate']."</th>";
                                     echo "<th>".$row['gallonPrice']."</th>";
                                     echo "<th>".$row['totalDue']."</th>";
+                                    echo "</tr>";
                                 }
                             }
 
