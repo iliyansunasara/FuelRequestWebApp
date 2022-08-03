@@ -96,7 +96,7 @@
                                             }
                                         </script>
                                     <div class="grid justify-items-stretch pt-6">
-                                        <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to submit?')">Submit</button>
+                                        <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to submit?, The total is: $' + document.getElementById('totalPrice').value)" type="submit">Submit</button>
                                     </div>
                                 </div>
                             </form>
