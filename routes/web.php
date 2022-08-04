@@ -69,6 +69,7 @@ Route::post('/registerSubmit', function () {
         }
         else{
             echo "<script>alert('Passwords do not match. Try again!')</script>";
+            return view('register');
         }
     }
 });
@@ -101,8 +102,8 @@ Route::post('/profileManagementSubmit', function () {
     }
 
     if ($result2) {
-        echo '<script>alert("You have successfully updated your information! Please login again!")</script>';
-        return view('login');
+        echo '<script>alert("You have successfully updated your information!")</script>';
+        return view('fuelQuoteForm');
     } else {
         echo '<script>alert("Nothing was changed! Login and Try again!")</script>';
         return view('login');
