@@ -69,7 +69,7 @@
                                     <label for="state" class="pt-2">State</label>
                                     <input type="text" readonly id="state" name="state" class="text-center" value="<?php echo $state; ?>">
                                     <label for="deliveryDate" class="pt-2">Delivery Date</label>
-                                    <input type="date" id="deliveryDate" name="deliveryDate" class="text-center" placeholder="Delivery Date" value="<?php echo $deliveryDate; ?>">
+                                    <input type="date" id="deliveryDate" name="deliveryDate" class="text-center" placeholder="Delivery Date" value="<?php echo $deliveryDate; ?>" required>
                                     <label for="gallonPrice" class="pt-2">Gallon Price ($)</label>
                                     <input type="number" readonly id="gallonPrice" name="gallonPrice" class="text-center" value="<?php echo number_format($gallonPrice,2); ?>">
                                     <label for="totalPrice" class="pt-2">Total Price ($)</label>
