@@ -91,8 +91,11 @@
                                                 var totalP = gallonsReq * gallonP;
                                                 var divobj = document.getElementById('totalPrice');
                                                 var divobj2 = document.getElementById('gallonPrice');
-                                                divobj.value = totalP.toFixed(2);
-                                                divobj2.value = gallonP.toFixed(2);
+                                                // divobj.value = totalP.toFixed(2);
+                                                //round totalP up to 2 decimal places
+                                                divobj.value = Math.ceil(totalP * 100) / 100;
+                                                divobj2.value = Math.ceil(gallonP * 100) / 100;
+                                                // divobj2.value = gallonP.toFixed(2);
                                             }
                                         </script>
                                     <div class="grid justify-items-stretch pt-6">

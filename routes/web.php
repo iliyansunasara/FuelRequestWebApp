@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
- session_start();
+//start session if not started yet
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 /*
 |--------------------------------------------------------------------------
