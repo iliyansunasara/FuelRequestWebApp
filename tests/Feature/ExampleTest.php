@@ -30,17 +30,17 @@ class ExampleTest extends TestCase
         $pricingMOD = new pricingMOD();
         $gallonsReq = 1;
         $state = 'TX';
-        $historyDiscount = .1;
+        $historyDiscount = .01;
         $totalP = $pricingMOD->PricingModule($gallonsReq, $state, $historyDiscount);
-        $this->assertEquals(1.58, $totalP);
+        $this->assertEquals(1.71, $totalP);
     }
     public function testPricing2() {
         $pricingMOD = new pricingMOD();
         $gallonsReq = 12342;
         $state = 'TX';
-        $historyDiscount = .1;
+        $historyDiscount = .01;
         $totalP = $pricingMOD->PricingModule($gallonsReq, $state, $historyDiscount);
-        $this->assertEquals(19253.52, $totalP);
+        $this->assertEquals(20919.69, $totalP);
     }
     public function testPricing3() {
         $pricingMOD = new pricingMOD();
@@ -78,8 +78,8 @@ class ExampleTest extends TestCase
         $pricingMOD = new pricingMOD();
         $gallonsReq = 327712;
         $state = 'CA';
-        $historyDiscount = .1;
+        $historyDiscount = .01;
         $totalP = $pricingMOD->PricingModule($gallonsReq, $state, $historyDiscount);
-        $this->assertEquals(521062.08, $totalP);
+        $this->assertEquals(565303.20, $totalP);
     }
 }

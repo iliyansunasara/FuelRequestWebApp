@@ -28,7 +28,7 @@
             $state = $result[0]->state;
             $result2 = DB::select('select * from FuelQuote where user_id = ?', [$userID]);
             if($result2) {
-                $histDisc = .1;
+                $histDisc = .01;
             } else {
                 $histDisc = 0;
             }
@@ -93,8 +93,8 @@
                                                 var divobj2 = document.getElementById('gallonPrice');
                                                 // divobj.value = totalP.toFixed(2);
                                                 //round totalP up to 2 decimal places
-                                                divobj.value = Math.ceil(totalP * 100) / 100;
-                                                divobj2.value = Math.ceil(gallonP * 100) / 100;
+                                                divobj.value = Math.round(totalP * 100) / 100;
+                                                divobj2.value = Math.round(gallonP * 100) / 100;
                                                 // divobj2.value = gallonP.toFixed(2);
                                             }
                                         </script>
